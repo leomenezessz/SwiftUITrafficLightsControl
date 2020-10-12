@@ -54,7 +54,9 @@ struct ContentView: View {
         }).alert(isPresented: $showAlert) { () -> Alert in
             Alert(title: Text("Message"), message: Text(esp8266ViewModel.esp8266Model.message), dismissButton: .cancel())
         }.sheet(isPresented: $showProgress, onDismiss:{
-            showAlert = true
+            if esp8266ViewModel.esp8266Model.message != "Success."{
+                showAlert = true
+            }
         } , content: {
             ProgressView("Waiting ESP8266 response...")
         })
